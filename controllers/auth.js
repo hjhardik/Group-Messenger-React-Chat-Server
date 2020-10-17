@@ -34,7 +34,7 @@ function signUp(username, password) {
       const token = jwt.sign(
         { userId: user._id },
         JWT_SECRET,
-        { expiresIn: 60 * 60 * 24 * 10 } // 10 days
+        { expiresIn: 60 * 60 * 24 * 10 } // token expires in 10 days
       );
 
       return Promise.resolve({
@@ -51,7 +51,7 @@ function login(username, password) {
   if (!username || !password) {
     return Promise.reject({
       success: false,
-      message: 'Please, provide username and password!',
+      message: 'Please provide username and password!',
     });
   }
 
