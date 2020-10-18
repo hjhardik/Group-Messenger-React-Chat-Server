@@ -1,10 +1,11 @@
 const Chat = require('../models/Chat');
 
 const messagesController = require('./messages');
-
+//get all the chats available
 function getAllChats() {
   return Chat.find()
-    .populate({ path: 'creator', select: 'username firstName lastName' })
+    .populate({ path: 'creator', select: 'username firstName lastName' })//populates the creator field 
+    //and it will return that field with only username,firstname,lastname and other fields as it is  
     .populate({ path: 'members', select: 'username firstName lastName' })
     .lean()
     .exec()
@@ -15,7 +16,7 @@ function getAllChats() {
       })
     );
 }
-
+//get the users chats
 function getMyChats(userId) {
   return Chat.find({
     $or: [{ creator: userId }, { members: userId }],
@@ -31,7 +32,7 @@ function getMyChats(userId) {
       })
     );
 }
-
+//when the user clicks on join chat
 function joinChat(userId, chatId) {
   return Chat.findById(chatId)
     .populate({ path: 'creator', select: 'username firstName lastName' })
@@ -45,7 +46,7 @@ function joinChat(userId, chatId) {
           message: 'Chat not found',
         });
       }
-
+      //check if user is already the creator or member of the chat
       const isCreator = chat.creator._id.toString() === userId;
       const isMember = chat.members.some(
         (member) => member._id.toString() === userId
@@ -57,7 +58,7 @@ function joinChat(userId, chatId) {
           message: 'User has already joined this chat',
         });
       }
-
+      //otherwise add the user to the chat
       return Chat.findOneAndUpdate(
         {
           _id: chatId,
@@ -90,7 +91,7 @@ function joinChat(userId, chatId) {
       })
     );
 }
-
+//user clicks on leave chat
 function leaveChat(userId, chatId) {
   return Chat.findById(chatId)
     .populate({ path: 'creator', select: 'username firstName lastName' })
@@ -155,7 +156,7 @@ function leaveChat(userId, chatId) {
       })
     );
 }
-
+//find chat by search
 function getChat(userId, chatId) {
   return Chat.findById(chatId)
     .populate({ path: 'creator', select: 'username firstName lastName' })
@@ -176,7 +177,7 @@ function getChat(userId, chatId) {
       });
     });
 }
-
+//create new chat
 function newChat(userId, data = {}) {
   const chat = new Chat({
     creator: userId,

@@ -21,11 +21,11 @@ function socketAuth(socket, next) {
     return next();
   });
 }
-
+// take a look at this link for socket.io working https://socket.io/get-started/chat/
 function socketio(io) {
   io.use(socketAuth);
 
-  // TODO: Move this sockets handlers somewhere
+  //when a socket is connected
   io.on('connection', (socket) => {
     socket.on('mount-chat', (chatId) => {
       socket.join(chatId);
@@ -56,6 +56,7 @@ function socketio(io) {
     });
   });
 
+  //send the io variable with the response
   return (req, res, next) => {
     res.io = io;
     next();

@@ -65,7 +65,6 @@ chatsRouter.get('/my', (req, res, next) => {
 });
 
 chatsRouter.get('/:id', (req, res, next) => {
-  // Current implementation is a bit shity, don't blame me.
   Promise.all([
     chatsController.getChat(req.decoded.userId, req.params.id),
     messagesController.getAllMessages(req.params.id),
