@@ -9,6 +9,8 @@ const socketio = require('./middlewares/socketio');
 const { PORT, MONGODB_URI } = require('./config');
 
 const app = express();
+// Allow CORS
+app.use(cors());
 
 // Create servers
 const server = http.createServer(app);
@@ -34,14 +36,9 @@ db.once('open', () => {
 });
 
 // Use url body parser
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Allow CORS
-
-// app.use(cors());
-app.options(cors());
 // Add socket.io
 
 app.use(socketio(io));
