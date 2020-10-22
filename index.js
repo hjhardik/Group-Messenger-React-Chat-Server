@@ -40,8 +40,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Allow CORS
 
-app.use(cors());
-
+// app.use(cors());
+app.options(cors());
 // Add socket.io
 
 app.use(socketio(io));
