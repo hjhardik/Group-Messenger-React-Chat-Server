@@ -2,24 +2,16 @@ const express = require('express');
 const http = require('http');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-// const cors = require('cors');
+const cors = require('cors');
 const SocketIOServer = require('socket.io');
 const routes = require('./routes');
 const socketio = require('./middlewares/socketio');
 const { MONGODB_URI } = require('./config');
 
 const app = express();
-// Allow CORS
-// app.use(cors());
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://hjhardik.github.io'); // update to match the domain you will make the request from
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  next();
-});
+// Allow CORS
+app.use(cors());
 
 // Create servers
 const server = http.createServer(app);
@@ -29,7 +21,8 @@ const io = SocketIOServer(server);
 mongoose.Promise = Promise;
 
 mongoose.connect(MONGODB_URI, {
-  useMongoClient: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
 const db = mongoose.connection;
