@@ -56,7 +56,7 @@ Here's the map of API's HTTP routes:
   - `/chats/my` **GET** — get list of all user's chats.
   - `/chats/:id` **GET** — get chat's information with messages by specific chat's `:id`.
   - `/chats/:id` **POST** — send new message to chat with specific `:id`.
-  - `/chast/:id` **DELETE** — delete chat with specific `:id`. Only creator of the chat can delete it.
+  - `/chats/:id` **DELETE** — delete chat with specific `:id`. Only creator of the chat can delete it.
   - `/chats/:id/join` **GET** — join chat with specific `:id`.
   - `/chats/:id/leave` **GET** — leave chat with specific `:id`.
 
