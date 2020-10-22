@@ -1,8 +1,8 @@
 const { Router } = require('express');
 const authController = require('../controllers/auth');
 
-//look at the Routes primer section in https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes
-//specifies the working and advantages of express router over direct routing
+// look at the Routes primer section in https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes
+// specifies the working and advantages of express router over direct routing
 const authRouter = new Router();
 
 authRouter.post('/signup', (req, res, next) => {

@@ -2,8 +2,8 @@ const Message = require('../models/Message');
 
 function sendMessage(userId, chatId, data) {
   const message = new Message(
-    //The Object.assign() method copies all enumerable own properties from 
-    //one or more source objects to a target object. It returns the target object.
+    // The Object.assign() method copies all enumerable own properties from
+    // one or more source objects to a target object. It returns the target object.
     Object.assign({}, data, {
       chatId,
       sender: userId,
@@ -29,7 +29,7 @@ function sendMessage(userId, chatId, data) {
 function getAllMessages(chatId) {
   return Message.find({ chatId })
     .populate({ path: 'sender', select: 'username firstName lastName' })
-    .sort({ createdAt: 1 }) //increasing order of creation date
+    .sort({ createdAt: 1 }) // increasing order of creation date
     .exec()
     .then((messages) =>
       Promise.resolve({

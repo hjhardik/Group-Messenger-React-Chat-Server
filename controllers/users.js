@@ -4,7 +4,7 @@ const Message = require('../models/Message');
 
 // Get list of all users
 function getAllUsers(exceptId) {
-  return User.find({ _id: { $ne: exceptId } }) //get all users except where id is exceptId
+  return User.find({ _id: { $ne: exceptId } }) // get all users except where id is exceptId
     .select('username firstName lastName')
     .exec()
     .then((users) =>

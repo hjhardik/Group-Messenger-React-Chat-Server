@@ -2,6 +2,11 @@
   "name": "group-messenger-server",
   "version": "0.1.0",
   "private": true,
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "12.16.1"
+  },
   "scripts": {
     "start": "forever index.js",
     "start:dev": "forever --watch index.js",

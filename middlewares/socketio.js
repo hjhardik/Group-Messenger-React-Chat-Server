@@ -25,7 +25,7 @@ function socketAuth(socket, next) {
 function socketio(io) {
   io.use(socketAuth);
 
-  //when a socket is connected
+  // when a socket is connected
   io.on('connection', (socket) => {
     socket.on('mount-chat', (chatId) => {
       socket.join(chatId);
@@ -56,7 +56,7 @@ function socketio(io) {
     });
   });
 
-  //send the io variable with the response
+  // send the io variable with the response
   return (req, res, next) => {
     res.io = io;
     next();
