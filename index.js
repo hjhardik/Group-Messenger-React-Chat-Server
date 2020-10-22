@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const SocketIOServer = require('socket.io');
 const routes = require('./routes');
 const socketio = require('./middlewares/socketio');
-const { PORT, MONGODB_URI } = require('./config');
+const { MONGODB_URI } = require('./config');
 
 const app = express();
 // Allow CORS
@@ -58,7 +58,7 @@ app.use('/v1', routes);
 
 // Start listening
 
-server.listen(PORT, () => {
+server.listen(process.env.PORT || 8000, () => {
   // eslint-disable-next-line
   console.log(`App is listening on ${server.address().port}`);
 });
